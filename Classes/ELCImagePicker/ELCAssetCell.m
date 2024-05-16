@@ -77,7 +77,11 @@
                 overlayView.labIndex.text = [NSString stringWithFormat:@"%d", asset.index + 1];
             } else {
                 if (overlayImage == nil) {
-                    overlayImage = [UIImage imageNamed:@"Overlay.png" inBundle:bundle withConfiguration:nil];
+                    if (@available(iOS 13.0, *)) {
+                        overlayImage = [UIImage imageNamed:@"Overlay.png" inBundle:bundle withConfiguration:nil];
+                    } else {
+                        overlayImage = [UIImage imageNamed:@"Overlay.png"];
+                    }
                 }
                 ELCOverlayImageView *overlayView = [[ELCOverlayImageView alloc] initWithImage:overlayImage];
                 [_overlayViewArray addObject:overlayView];
@@ -125,7 +129,11 @@
             } else {
             
                 if (overlayImage == nil) {
-                    overlayImage = [UIImage imageNamed:@"Overlay.png" inBundle:bundle withConfiguration:nil];
+                    if (@available(iOS 13.0, *)) {
+                        overlayImage = [UIImage imageNamed:@"Overlay.png" inBundle:bundle withConfiguration:nil];
+                    } else {
+                        overlayImage = [UIImage imageNamed:@"Overlay.png"];
+                    }
                 }
                 ELCOverlayImageView *overlayView = [[ELCOverlayImageView alloc] initWithImage:overlayImage];
                 [_overlayViewArray addObject:overlayView];
