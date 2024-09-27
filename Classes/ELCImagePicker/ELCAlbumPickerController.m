@@ -78,16 +78,18 @@ static CGSize const kAlbumThumbnailSize1 = {70.0f , 70.0f};
                 
                 // Group Enumerator Failure Block
                 void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-                  
                     if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied) {
-                        NSString *errorMessage = NSLocalizedString(@"This app does not have access to your photos or videos. You can enable access in Privacy Settings.", nil);
-                        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Access Denied", nil) message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
-                      
+                        NSString *errorMessage = NSLocalizedString(@"msg_galleryPermissionDenied", nil);
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"lbl_Permission_Denied", nil) message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+                        [alert addAction:defaultAction];
+                        [self presentViewController:alert animated:YES completion:nil];
                     } else {
-                        NSString *errorMessage = [NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]];
-                        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"error_dialog_title", nil) message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+                        [alert addAction:defaultAction];
+                        [self presentViewController:alert animated:YES completion:nil];
                     }
-
                     [self.navigationItem setTitle:nil];
                 };
                         
