@@ -73,7 +73,7 @@
 {
     BOOL shouldSelect = previousCount < self.maximumImagesCount;
     if (!shouldSelect) {
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"msg_imageUploadingNumberExceeded", nil), (long)self.maximumImagesCount];
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"msg_imageUploading20Exceeded", nil)];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"error_dialog_title", nil) message:message preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
         [alert addAction:defaultAction];
